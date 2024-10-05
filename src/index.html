@@ -4,31 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
+    <!-- this line below somehow fixed my scaling issue -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> 
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Anton&family=Tiny5&display=swap");
     </style>
   </head>
-  <body class="relative h-screen bg-no-repeat bg-cover bg-center  "
-  style="background-image: url('./images/start_bg.png');">
-
+  <body
+    class="flex relative h-screen bg-no-repeat bg-cover bg-center"
+    style="background-image: url('./images/start_bg.png')"
+  >
     <div class="absolute inset-x-0 top-1/8">
-      <img class="mx-auto" src="./images/title.png" alt="Hi! My Name is Erika Nelson" />
+      <img
+        class="mx-auto transform scale-125 transition-transform duration-300 ease-in-out hover:scale-150"
+        src="./images/title.png"
+        alt="Hi! My Name is Erika Nelson"
+      />
     </div>
+
     <button id="playSoundButton" class="absolute inset-x-0 top-3/4">
-      
-      <img class="mx-auto  hover:brightness-85" href ="./about.html" src="./images/strt_btn.png" alt="Hi! My Name is Erika Nelson" />
-     
+      <img
+        class="mx-auto hover:brightness-85 transform transition-transform duration-300 ease-in-out hover:scale-90"
+        href="./about.html"
+        src="./images/strt_btn.png"
+        alt="Start Button"
+      />
     </button>
     <audio id="sound" src="../click1.mp3"></audio>
 
     <script>
-      document.getElementById("playSoundButton").onclick = function () {
-        document.getElementById("sound").play();
-        setTimeout(function () {
-                window.location.href = 'about.html'; // Redirect after 500ms
-            }, 500); // Time is in milliseconds
-      };
+      document
+        .getElementById("playSoundButton")
+        .addEventListener("click", async function () {
+          const audio = document.getElementById("sound");
+          try {
+            await audio.play();
+            audio.onended = () => {
+              window.location.href = "./about.html";
+            };
+          } catch (error) {
+            console.error("Error playing sound:", error);
+            window.location.href = "./about.html";
+          }
+        });
     </script>
   </body>
 </html>
