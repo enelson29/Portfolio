@@ -9,36 +9,25 @@
       @import url("https://fonts.googleapis.com/css2?family=Anton&family=Tiny5&display=swap");
     </style>
   </head>
-  <body class="relative h-screen bg-no-repeat bg-cover bg-center"
+  <body class="relative h-screen bg-no-repeat bg-cover bg-center  "
   style="background-image: url('./images/start_bg.png');">
 
     <div class="absolute inset-x-0 top-1/8">
       <img class="mx-auto" src="./images/title.png" alt="Hi! My Name is Erika Nelson" />
     </div>
-    <div class="absolute inset-x-0 top-3/4">
-      <img class="mx-auto" src="./images/strt_btn.png" alt="Hi! My Name is Erika Nelson" />
-    </div>
-    <!-- Background image -->
-    <!-- <div
-      class="relative bg-center bg-cover bg-no-repeat text-center"
-      style="background-image: url('./images/start_bg.png'); height: 100vh"
-    >
-      <div>
-        <button id="playSoundButton" class="pt-40">
-          <img
-            class="w-72 h-auto hover:brightness-85"
-            src="./images/strt_btn.png"
-            alt="Start button"
-          />
-          <a href=""></a>
-          <audio id="sound" src="../click1.mp3"></audio>
-        </button>
-      </div>
-    </div> -->
+    <button id="playSoundButton" class="absolute inset-x-0 top-3/4">
+      
+      <img class="mx-auto  hover:brightness-85" href ="./about.html" src="./images/strt_btn.png" alt="Hi! My Name is Erika Nelson" />
+     
+    </button>
+    <audio id="sound" src="../click1.mp3"></audio>
 
     <script>
       document.getElementById("playSoundButton").onclick = function () {
         document.getElementById("sound").play();
+        setTimeout(function () {
+                window.location.href = 'about.html'; // Redirect after 500ms
+            }, 500); // Time is in milliseconds
       };
     </script>
   </body>

@@ -567,16 +567,12 @@ video {
   right: 0px;
 }
 
-.top-1\/4 {
-  top: 25%;
+.top-1\/8 {
+  top: 12.5%;
 }
 
 .top-3\/4 {
   top: 75%;
-}
-
-.top-1\/8 {
-  top: 12.5%;
 }
 
 .mx-auto {
