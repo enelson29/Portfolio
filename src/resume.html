@@ -8,25 +8,88 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Anton&family=Tiny5&display=swap");
+      @keyframes jump {
+        0%,
+        100% {
+          transform: translateY(0); 
+        }
+        50% {
+          transform: translateY(50px); 
+        }
+    }
+
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-25px); }
+        20%, 40%, 60%, 80% { transform: translateX(25px); }
+    }
+      .animate-shake {
+        animation: shake 15s infinite;
+    }
+      .animate-jump {
+        animation: jump 5s infinite; 
+        scale: 1.2;
+    }
+    </style>
   </head>
   <body
     class="h-screen bg-no-repeat bg-cover bg-center flex"
     style="background-image: url('./images/main_bg.png')"
   >
     <div class="grid grid-cols-5 grid-rows-5 gap-4 w-full h-full p-10">
-      <div class="col-start-2 row-start-2 scale-125">
-        <img class="scale-150" src="./images/Seeking.png" alt="" />
+      <button id="back">
+        <img
+          class="absolute top-4 left-10 transform scale-100 transition-transform duration-300 ease-in-out hover:scale-105"
+          src="./images/back_btn.png"
+          alt="Back"
+        />
+      </button>
+
+      <div class="pt-11 col-start-2 row-start-2 scale-150 animate-jump">
+        <img
+          class="scale-150"
+          src="./images/Seeking.png"
+          alt="Erika Nelson, Graduation: 2025, Major: Computer Science
+          Seeking a Full-Time Position, Interests: Front-end, Full-Stack, Web Dev, Game Dev"
+        />
       </div>
 
-      <div class="col-start-2 row-start-5 pl-12">
-        <button id="full_resume">
+      <img
+        class="-mt-1 scale-100 col-start-2 row-start-1"
+        src="./images/bing.png"
+        alt="Binghamton University Logo"
+      />
+
+      <div class="col-start-2 row-start-5 pl-9">
+        <button id="full_resume" class="scale-105">
           <img
-            class="mx-auto hover:brightness-85 transform transition-transform duration-300 ease-in-out hover:scale-90"
+            class="hover:brightness-85 transform transition-transform duration-300 ease-in-out hover:scale-90"
             src="./images/full_resume.png"
-            alt="Start Button"
+            alt="Resume"
           />
         </button>
       </div>
+
+      <div
+        class="mt-20 col-start-4 col-span-5 text-6xl anton-regular text-white transform scale-100 transition-transform duration-300 ease-in-out hover:scale-105"
+        style="text-shadow: 1px 2px 5px rgb(50, 99, 61)"
+        ;
+      >
+        <h1>Languages and Technologies</h1>
+      </div>
+
+      <div class="col-start-4 col-span-5 scale-125">
+        <div class="flex flex-col items-center">
+            <img class="block random-delay animate-shake" src="./images/C.png" alt="Image 1" class="block">
+            <img class="block random-delay animate-shake" src="./images/html.png" alt="Image 2" class="block">
+            <img class="block random-delay animate-shake" src="./images/python.png" alt="Image 2" class="block">
+            <img class="block random-delay animate-shake" src="./images/tailwind.png" alt="Image 2" class="block">
+            <img class="block random-delay animate-shake" src="./images/react.png" alt="Image 2" class="block">
+            <img class="block random-delay animate-shake" src="./images/unity.png" alt="Image 2" class="block">
+          </div>
     </div>
 
     <audio id="sound" src="../click1.mp3"></audio>
@@ -40,19 +103,34 @@
             try {
               await audio.play();
               audio.onended = () => {
-                window.open(redirectUrl, "_blank"); // Open in new tab
+                if (buttonId === "full_resume") {
+                  window.open(redirectUrl, "_blank");
+                } else window.location.href = redirectUrl;
               };
             } catch (error) {
               console.error("Error playing sound:", error);
-              window.open(redirectUrl, "_blank"); // Open in new tab on error
+              window.open(redirectUrl, "_blank");
             }
           });
       }
 
+      function applyRandomDelay() {
+      const elements = document.querySelectorAll('.random-delay');
+      
+      elements.forEach(el => {
+        const randomDelay = (Math.random() * 1).toFixed(2); // Random delay between 0s and 1s
+        el.style.animationDelay = `${randomDelay}s`;
+      });
+    }
+
+    // Apply the random delay on page load
+        window.onload = applyRandomDelay;
+
       setupButton(
         "full_resume",
         "https://drive.google.com/file/d/1hFJfTru9CzG_5GDnvwnDDkIXbRwKqM6G/view?usp=sharing"
-      ); // Use the full URL for the Google Drive link
+      );
+      setupButton("back", "./about.html")
     </script>
   </body>
 </html>

@@ -8,14 +8,33 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-  </head>   
+
+    <style>
+      @keyframes jump {
+        0%,
+        100% {
+          transform: translateY(0); /* Original position */
+        }
+        50% {
+          transform: translateY(-30px); /* Jump up by 30px */
+        }
+      }
+      .animate-jump {
+        animation: jump 1s infinite; /* Animation applied */
+      }
+    </style>
+  </head>
   <body
     class="h-screen bg-no-repeat bg-cover bg-center flex"
     style="background-image: url('./images/main_bg.png')"
   >
     <div class="grid grid-cols-5 grid-rows-5 gap-4 w-full h-full p-10">
       <button id="back">
-        <img class="absolute top-4 left-10 transform scale-100 transition-transform duration-300 ease-in-out hover:scale-105" src="./images/back_btn.png" alt="Back" />
+        <img
+          class="absolute top-4 left-10 transform scale-100 transition-transform duration-300 ease-in-out hover:scale-105"
+          src="./images/back_btn.png"
+          alt="Back"
+        />
       </button>
 
       <img
