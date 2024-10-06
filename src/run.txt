@@ -1,4 +1,2 @@
-fnm use --install-if-missing 20
 fnm env --use-on-cd | Out-String | Invoke-Expression
-npm install -D tailwindcss
 npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
