@@ -44,32 +44,6 @@
         />
       </button>
 
-      <img
-        class="pt-16 col-start-3 row-start-1 inset-y-0 transform scale-125 transition-transform duration-300 ease-in-out hover:scale-150"
-        src="./images/about_me.png"
-        alt="About Me"
-      />
-
-      <button
-        id="resume"
-        class="col-start-2 row-start-3 hover:brightness-85 scale-110 transform transition-transform duration-300 ease-in-out hover:scale-100"
-      >
-        <img src="./images/resume.png" alt="Resume" />
-      </button>
-
-      <button
-        id="experience"
-        class="pl-5 col-start-3 row-start-3 hover:brightness-85 scale-110 transform transition-transform duration-300 ease-in-out hover:scale-100"
-      >
-        <img src="./images/experience.png" alt="Resume" />
-      </button>
-
-      <button
-        id="interests"
-        class="pl-8 col-start-4 row-start-3 hover:brightness-85 scale-110 transform transition-transform duration-300 ease-in-out hover:scale-100"
-      >
-        <img src="./images/interests.png" alt="Resume" />
-      </button>
     </div>
 
     <audio id="sound" src="audio/click1.mp3"></audio>
@@ -91,10 +65,8 @@
             }
           });
       }
-      setupButton("resume", "./resume.html");
-      setupButton("experience", "./experience.html");
-      setupButton("interests", "./interests.html");
-      setupButton("back", "./index.html");
+      setupButton("back", "./about.html");
+  
 
       const audio = document.getElementById('bg-music');
       
@@ -108,6 +80,7 @@
         window.onbeforeunload = () => {
         localStorage.setItem('songTime', audio.currentTime);
         };
+
     </script>
   </body>
 </html>

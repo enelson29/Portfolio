@@ -26,11 +26,11 @@
           transform: translateY(0);
         }
         50% {
-          transform: translateY(-30px);
+          transform: translateY(-10px);
         }
       }
       .animate-jump {
-        animation: jump 1.5s infinite; 
+        animation: jump 0.75s infinite; 
       }
     </style>
   </head>
@@ -39,7 +39,7 @@
     style="background-image: url('./images/start_bg.png')">
 
     <div class="audio-container fixed bottom-0 right-0">
-      <audio id="bg-music" controls autoplay loop>
+      <audio id="bg-music"  autoplay controls loop>
         <source src="audio/shop.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
@@ -53,6 +53,12 @@
       />
     </div>
 
+    <!-- <div class="bg-blue-500 text-white w-80 h-40 p-4 flex items-center justify-center rounded-md shadow-lg ">
+      <p class="text-center">
+        This is a rectangle that holds text!
+      </p>
+    </div> -->
+
     <button id="playSoundButton" class="absolute inset-x-0 top-3/4">
       <img
         class="mx-auto hover:brightness-85 transform transition-transform duration-300 ease-in-out hover:scale-90"
@@ -62,10 +68,11 @@
       />
     </button>
 
-    <div class="mx-auto pt-28 animate-jump text-green-500 tiny5-regular mr-96 pr-20 text-2xl"
+    <div class="fixed bottom-20 right-36 animate-jump text-green-500 tiny5-regular text-3xl"
     style="text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5)";>
-      &#9886 Sound On &#9887
+      &#9886 Play Me! &#9887
     </div>
+ 
  
     <audio id="sound" src="audio/click1.mp3"></audio>
 

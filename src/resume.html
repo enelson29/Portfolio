@@ -39,7 +39,7 @@
     class="h-screen bg-no-repeat bg-cover bg-center flex overflow-hidden"
     style="background-image: url('./images/main_bg.png')">
     <div class="audio-container fixed bottom-0 right-0">
-        <audio id="bg-music" controls autoplay loop>
+        <audio id="bg-music" autoplay controls loop>
           <source src="audio/shop.mp3" type="audio/mpeg">
           Your browser does not support the audio element.
         </audio>
@@ -63,7 +63,7 @@
       </div>
 
       <img
-        class="-mt-1 scale-100 col-start-2 row-start-1"
+        class="-mt-1 scale-75 col-start-2 row-start-1"
         src="./images/bing.png"
         alt="Binghamton University Logo"
       />
@@ -137,9 +137,9 @@
       setupButton("back", "./about.html")
 
       const audio = document.getElementById('bg-music');
-      
+      applyRandomDelay();
       window.onload = () => {
-        applyRandomDelay();
+        
         const savedTime = localStorage.getItem('songTime');
         if (savedTime) {
             audio.currentTime = savedTime;
