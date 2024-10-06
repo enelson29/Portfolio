@@ -36,9 +36,14 @@
     </style>
   </head>
   <body
-    class="h-screen bg-no-repeat bg-cover bg-center flex"
-    style="background-image: url('./images/main_bg.png')"
-  >
+    class="h-screen bg-no-repeat bg-cover bg-center flex overflow-hidden"
+    style="background-image: url('./images/main_bg.png')">
+    <div class="audio-container fixed bottom-0 right-0">
+        <audio id="bg-music" controls autoplay loop>
+          <source src="audio/shop.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+    </div>
     <div class="grid grid-cols-5 grid-rows-5 gap-4 w-full h-full p-10">
       <button id="back">
         <img
@@ -92,7 +97,7 @@
           </div>
     </div>
 
-    <audio id="sound" src="../click1.mp3"></audio>
+    <audio id="sound" src="audio/click1.mp3"></audio>
 
     <script>
       function setupButton(buttonId, redirectUrl) {
@@ -118,19 +123,33 @@
       const elements = document.querySelectorAll('.random-delay');
       
       elements.forEach(el => {
-        const randomDelay = (Math.random() * 1).toFixed(2); // Random delay between 0s and 1s
+        const randomDelay = (Math.random() * 1).toFixed(2); 
         el.style.animationDelay = `${randomDelay}s`;
       });
     }
 
-    // Apply the random delay on page load
-        window.onload = applyRandomDelay;
+    
 
       setupButton(
         "full_resume",
         "https://drive.google.com/file/d/1hFJfTru9CzG_5GDnvwnDDkIXbRwKqM6G/view?usp=sharing"
       );
       setupButton("back", "./about.html")
+
+      const audio = document.getElementById('bg-music');
+      
+      window.onload = () => {
+        applyRandomDelay();
+        const savedTime = localStorage.getItem('songTime');
+        if (savedTime) {
+            audio.currentTime = savedTime;
+        }
+        };
+        
+        window.onbeforeunload = () => {
+        localStorage.setItem('songTime', audio.currentTime);
+        };
+       
     </script>
   </body>
 </html>

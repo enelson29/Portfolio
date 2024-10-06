@@ -26,8 +26,15 @@
   </head>
   <body
     class="h-screen bg-no-repeat bg-cover bg-center flex"
-    style="background-image: url('./images/main_bg.png')"
-  >
+    style="background-image: url('./images/main_bg.png')">
+    
+    <div class="audio-container fixed bottom-0 right-0">
+        <audio id="bg-music" controls autoplay loop>
+          <source src="audio/shop.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+    </div>
+
     <div class="grid grid-cols-5 grid-rows-5 gap-4 w-full h-full p-10">
       <button id="back">
         <img
@@ -65,7 +72,7 @@
       </button>
     </div>
 
-    <audio id="sound" src="../click1.mp3"></audio>
+    <audio id="sound" src="audio/click1.mp3"></audio>
 
     <script>
       function setupButton(buttonId, redirectUrl) {
@@ -88,6 +95,19 @@
       setupButton("experience", "./experience.html");
       setupButton("interests", "./interests.html");
       setupButton("back", "./index.html");
+
+      const audio = document.getElementById('bg-music');
+      
+      window.onload = () => {
+        const savedTime = localStorage.getItem('songTime');
+        if (savedTime) {
+            audio.currentTime = savedTime;
+        }
+        };
+
+        window.onbeforeunload = () => {
+        localStorage.setItem('songTime', audio.currentTime);
+        };
     </script>
   </body>
 </html>

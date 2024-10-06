@@ -12,25 +12,39 @@
 
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Anton&family=Tiny5&display=swap');
+
+      .audio-container {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      z-index: 50; /* Make sure it's on top of other content */
+    }
     
       @keyframes jump {
         0%,
         100% {
-          transform: translateY(0); /* Original position */
+          transform: translateY(0);
         }
         50% {
-          transform: translateY(-30px); /* Jump up by 30px */
+          transform: translateY(-30px);
         }
       }
       .animate-jump {
-        animation: jump 1s infinite; /* Animation applied */
+        animation: jump 1.5s infinite; 
       }
     </style>
   </head>
   <body
     class="flex relative h-screen bg-no-repeat bg-cover bg-center"
-    style="background-image: url('./images/start_bg.png')"
-  >
+    style="background-image: url('./images/start_bg.png')">
+
+    <div class="audio-container fixed bottom-0 right-0">
+      <audio id="bg-music" controls autoplay loop>
+        <source src="audio/shop.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
     <div class="absolute inset-x-0 top-1/8">
       <img
         class="mx-auto transform scale-125 transition-transform duration-300 ease-in-out hover:scale-150"
@@ -53,7 +67,7 @@
       &#9886 Sound On &#9887
     </div>
  
-    <audio id="sound" src="../click1.mp3"></audio>
+    <audio id="sound" src="audio/click1.mp3"></audio>
 
     <script>
       document
@@ -70,6 +84,19 @@
             window.location.href = "./about.html";
           }
         });
+
+      const audio = document.getElementById('bg-music');
+
+      window.onload = () => {
+        const savedTime = localStorage.getItem('songTime');
+        if (savedTime) {
+          audio.currentTime = savedTime;
+        }
+      };
+
+      window.onbeforeunload = () => {
+        localStorage.setItem('songTime', audio.currentTime);
+      };
     </script>
   </body>
 </html>
