@@ -5,11 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
     <!-- this line below somehow fixed my scaling issue -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> 
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Anton&family=Tiny5&display=swap');
+    
+      @keyframes jump {
+        0%,
+        100% {
+          transform: translateY(0); /* Original position */
+        }
+        50% {
+          transform: translateY(-30px); /* Jump up by 30px */
+        }
+      }
+      .animate-jump {
+        animation: jump 1s infinite; /* Animation applied */
+      }
+    </style>
   </head>
   <body
     class="flex relative h-screen bg-no-repeat bg-cover bg-center"
-    style="background-image: url('./images/start_bg.png')">
+    style="background-image: url('./images/start_bg.png')"
+  >
     <div class="absolute inset-x-0 top-1/8">
       <img
         class="mx-auto transform scale-125 transition-transform duration-300 ease-in-out hover:scale-150"
@@ -26,6 +47,12 @@
         alt="Start Button"
       />
     </button>
+
+    <div class="mx-auto pt-28 animate-jump text-green-500 tiny5-regular mr-96 pr-20 text-2xl"
+    style="text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5)";>
+      &#9886 Sound On &#9887
+    </div>
+ 
     <audio id="sound" src="../click1.mp3"></audio>
 
     <script>

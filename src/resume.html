@@ -12,5 +12,47 @@
   <body
     class="h-screen bg-no-repeat bg-cover bg-center flex"
     style="background-image: url('./images/main_bg.png')"
-  ></body>
+  >
+    <div class="grid grid-cols-5 grid-rows-5 gap-4 w-full h-full p-10">
+      <div class="col-start-2 row-start-2 scale-125">
+        <img class="scale-150" src="./images/Seeking.png" alt="" />
+      </div>
+
+      <div class="col-start-2 row-start-5 pl-12">
+        <button id="full_resume">
+          <img
+            class="mx-auto hover:brightness-85 transform transition-transform duration-300 ease-in-out hover:scale-90"
+            src="./images/full_resume.png"
+            alt="Start Button"
+          />
+        </button>
+      </div>
+    </div>
+
+    <audio id="sound" src="../click1.mp3"></audio>
+
+    <script>
+      function setupButton(buttonId, redirectUrl) {
+        document
+          .getElementById(buttonId)
+          .addEventListener("click", async function () {
+            const audio = document.getElementById("sound");
+            try {
+              await audio.play();
+              audio.onended = () => {
+                window.open(redirectUrl, "_blank"); // Open in new tab
+              };
+            } catch (error) {
+              console.error("Error playing sound:", error);
+              window.open(redirectUrl, "_blank"); // Open in new tab on error
+            }
+          });
+      }
+
+      setupButton(
+        "full_resume",
+        "https://drive.google.com/file/d/1hFJfTru9CzG_5GDnvwnDDkIXbRwKqM6G/view?usp=sharing"
+      ); // Use the full URL for the Google Drive link
+    </script>
+  </body>
 </html>
