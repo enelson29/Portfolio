@@ -26,7 +26,7 @@
     </style>
   </head>
   <body
-    class="h-screen bg-no-repeat bg-cover bg-center flex"
+    class="h-screen bg-no-repeat bg-cover bg-center flex overflow-hidden"
     style="background-image: url('./images/main_bg.png')"
   >
     <div class="audio-container fixed bottom-0 right-0">
@@ -36,7 +36,7 @@
       </audio>
     </div>
 
-    <div class="grid grid-cols-7 grid-rows-7 gap-4 w-full h-full p-10">
+    <div class="flex-col items-center justify-center w-full h-full p-4 md:p-10">
       <button id="back">
         <img
           class="absolute top-4 left-10 transform scale-100 transition-transform duration-300 ease-in-out hover:scale-105"
@@ -45,32 +45,39 @@
         />
       </button>
 
-      <div class="text-4xl col-start-1 row-start-2">
-        <h1 class="relative anton-regular text-5xl pb-5 text-center text-white ml-24"
-            style="text-shadow: 1px 1px 19px rgb(1, 37, 136)">StackHacks</h1>
-            
-        <div class="bg-blue-200 w-full h-[600px] rounded-3xl border-4 border-blue-300 text-center pt-12"
-        style="width: 400px; height: 600px;">
-          <h1 class="text-blue-400 tiny5-regular transition scale-100 hover:scale-125" 
-              style="text-shadow: 2px 2px 2px rgb(250, 250, 250)">Software Engineer</h1>
+      <div class="">
+        <h1
+          class=" anton-regular text-5xl text-white text-center flex justify-center items-center"
+          style="text-shadow: 1px 1px 19px rgb(1, 37, 136)"
+        >
+          StackHacks
+        </h1>
+
+        <div
+          class="bg-blue-200 w-full h-[600px] rounded-3xl border-4 border-blue-300 text-center text-blue-400 tiny5-regular text-4xl "
+          style="
+            width: 400px;
+            height: 600px;
+            text-shadow: 2px 2px 2px rgb(250, 250, 250);
+          "
+        >
+          <h1 class="transition scale-100 hover:scale-125">
+            Software Engineer
+          </h1>
           &nbsp;
-          <h1 class="text-blue-400 tiny5-regular transition scale-100 hover:scale-125" 
-              style="text-shadow: 2px 2px 2px rgb(250, 250, 250)">Website Development</h1>
+          <h1 class="transition scale-100 hover:scale-125">
+            Website Development
+          </h1>
           &nbsp;
-          <h1 class="text-blue-400 tiny5-regular transition scale-100 hover:scale-125" 
-              style="text-shadow: 2px 2px 2px rgb(250, 250, 250)">React</h1>
+          <h1 class="transition scale-100 hover:scale-125">React</h1>
           &nbsp;
-          <h1 class="text-blue-400 tiny5-regular transition scale-100 hover:scale-125" 
-              style="text-shadow: 2px 2px 2px rgb(250, 250, 250)">Teamwork</h1>
+          <h1 class="transition scale-100 hover:scale-125">Teamwork</h1>
           &nbsp;
-          <h1 class="text-blue-400 tiny5-regular transition scale-100 hover:scale-125" 
-              style="text-shadow: 2px 2px 2px rgb(250, 250, 250)">Docusaurus</h1>
+          <h1 class="transition scale-100 hover:scale-125">Docusaurus</h1>
           &nbsp;
-          <h1 class="text-blue-400 tiny5-regular transition scale-100 hover:scale-125" 
-              style="text-shadow: 2px 2px 2px rgb(250, 250, 250)">Canva</h1>
+          <h1 class="transition scale-100 hover:scale-125">Canva</h1>
         </div>
       </div>
-      
     </div>
 
     <audio id="sound" src="audio/click1.mp3"></audio>
