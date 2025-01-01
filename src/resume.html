@@ -11,6 +11,18 @@
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Anton&family=Tiny5&display=swap");
+      @keyframes jump {
+        0%,
+        100% {
+          transform: translateY(0); /* Original position */
+        }
+        50% {
+          transform: translateY(-30px); /* Jump up by 30px */
+        }
+      }
+      .animate-jump {
+        animation: jump 3.5s infinite; /* Animation applied */
+      }
     </style>
   </head>
   <body
@@ -33,14 +45,14 @@
 
       <div class="flex flex-col items-center justify-center w-full p-4 md:p-10">
         <img
-          class=""
+          class="animate-jump scale-150"
           src="./images/Seeking.png"
           alt="Erika Nelson, Graduation: 2025, Major: Computer Science
           Seeking a Full-Time Position, Interests: Front-end, Full-Stack, Web Dev, Game Dev"
         />
         <button id="full_resume">
           <img
-            class="transform scale-90 transition-transform duration-300 ease-in-out hover:scale-105"
+            class="transform scale-75 transition-transform duration-300 ease-in-out hover:scale-105"
             src="./images/full_resume.png"
             alt="Back"
           />
