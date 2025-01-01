@@ -6,7 +6,7 @@
     <link href="./output.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
-<body class="h-screen bg-no-repeat bg-cover bg-center flex" style="background-image: url('./images/main_bg.png')">
+<body class="h-screen bg-no-repeat bg-center flex" style="background-image: url('./images/main_bg.png')">
     <div class="audio-container fixed bottom-0 right-0">
         <audio id="bg-music" controls loop>
             <source src="audio/shop.mp3" type="audio/mpeg">
@@ -16,26 +16,26 @@
 
     <div class="flex flex-col items-center justify-center w-full h-full p-4 md:p-10">
         <button id="back" class="absolute top-4 left-4 z-10">
-            <img class="transform scale-100 transition-transform duration-300 ease-in-out hover:scale-105" src="./images/back_btn.png" alt="Back" />
+            <img class="transform scale-90 md:scale-100 transition-transform duration-300 ease-in-out hover:scale-105" src="./images/back_btn.png" alt="Back" />
         </button>
 
-        <img class="mb-8 transform scale-75 md:scale-100 transition-transform duration-300 ease-in-out hover:scale-150" src="./images/about_me.png" alt="About Me" />
+        <img class="mb-4 md:mb-8 transform scale-75 md:scale-100 transition-transform duration-300 ease-in-out hover:scale-110" src="./images/about_me.png" alt="About Me" />
 
-        <div class="flex space-x-4 scale-110 gap-4">
-            <button id="resume" class="w-full h-full flex items-center justify-center hover:brightness-85 scale-150 transform transition-transform duration-300 ease-in-out hover:scale-110">
-                <img src="./images/resume.png" alt="Resume" class="w-3/4 h-3/4"/>
+        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 scale-110">
+            <button id="resume" class="flex items-center justify-center hover:brightness-90 scale-125 transform transition-transform duration-300 ease-in-out hover:scale-110">
+                <img src="./images/resume.png" alt="Resume" class="w-1/2 h-auto"/>
             </button>
 
-            <button id="experience" class="w-full h-full flex items-center justify-center hover:brightness-85 scale-150 transform transition-transform duration-300 ease-in-out hover:scale-110">
-                <img src="./images/experience.png" alt="Experience" class="w-3/4 h-3/4"/>
+            <button id="experience" class="flex items-center justify-center hover:brightness-90 scale-125 transform transition-transform duration-300 ease-in-out hover:scale-110">
+                <img src="./images/experience.png" alt="Experience" class="w-1/2 h-auto"/>
             </button>
 
-            <button id="interests" class="w-full h-full flex items-center justify-center hover:brightness-85 scale-150 transform transition-transform duration-300 ease-in-out hover:scale-110">
-                <img src="./images/interests.png" alt="Interests" class="w-3/4 h-3/4"/>
+            <button id="interests" class="flex items-center justify-center hover:brightness-90 scale-125 transform transition-transform duration-300 ease-in-out hover:scale-110">
+                <img src="./images/interests.png" alt="Interests" class="w-1/2 h-auto"/>
             </button>
         </div>
     </div>
-
+    
     <audio id="sound" src="audio/click1.mp3"></audio>
 
     <script>
