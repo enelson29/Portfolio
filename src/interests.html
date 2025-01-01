@@ -1,50 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./output.css" rel="stylesheet" />
+    <title>Rotating Circle of Larger Images</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-
     <style>
-      @keyframes jump {
-        0%,
-        100% {
-          transform: translateY(0); 
+      /* Rotate animation */
+      @keyframes rotateAround {
+        0% {
+          transform: rotate(0deg);
         }
-        50% {
-          transform: translateY(-30px); 
+        100% {
+          transform: rotate(360deg);
         }
       }
-      .animate-jump {
-        animation: jump 1s infinite; 
+
+      /* Container for rotating circle */
+      .rotate-circle {
+        animation: rotateAround 10s infinite linear;
+        position: relative;
+        width: 500px; /* Increase the size of the circle container */
+        height: 500px; /* Adjust the height accordingly */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+      }
+
+      /* Style for the images on the circle */
+      .circle-image {
+        position: absolute;
+        width: 120px; /* Larger image size */
+        height: 120px; /* Larger image size */
+        object-fit: cover;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+      }
+
+      /* Adjusting the position for each image around the circle */
+      .image1 {
+        transform: rotate(0deg) translate(180px) rotate(0deg); /* Increased image size and translation distance */
+      }
+      .image2 {
+        transform: rotate(72deg) translate(180px) rotate(-72deg);
+      }
+      .image3 {
+        transform: rotate(144deg) translate(180px) rotate(-144deg);
+      }
+      .image4 {
+        transform: rotate(216deg) translate(180px) rotate(-216deg);
+      }
+      .image5 {
+        transform: rotate(288deg) translate(180px) rotate(-288deg);
       }
     </style>
   </head>
   <body
-    class="h-screen bg-no-repeat bg-cover bg-center flex"
-    style="background-image: url('./images/main_bg.png')">
-    
+    class="h-screen bg-no-repeat bg-cover bg-center flex justify-center items-center"
+    style="background-image: url('./images/main_bg.png')"
+  >
+    <!-- Audio Container -->
     <div class="audio-container fixed bottom-0 right-0">
-        <audio id="bg-music"  controls loop autoplay>
-          <source src="audio/shop.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
+      <audio id="bg-music" controls loop>
+        <source src="audio/shop.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
     </div>
 
-    <div class="grid grid-cols-5 grid-rows-5 gap-4 w-full h-full p-10">
-      <button id="back">
-        <img
-          class="absolute top-4 left-10 transform scale-100 transition-transform duration-300 ease-in-out hover:scale-105"
-          src="./images/back_btn.png"
-          alt="Back"
-        />
-      </button>
-
+    <!-- Rotating Circle of Images -->
+    <div class="rotate-circle scale-150">
+      <img class="circle-image image1" src="https://via.placeholder.com/120" alt="Image 1" />
+      <img class="circle-image image2" src="https://via.placeholder.com/120" alt="Image 2" />
+      <img class="circle-image image3" src="https://via.placeholder.com/120" alt="Image 3" />
+      <img class="circle-image image4" src="https://via.placeholder.com/120" alt="Image 4" />
+      <img class="circle-image image5" src="https://via.placeholder.com/120" alt="Image 5" />
     </div>
+
+    <!-- Back Button -->
+    <button id="back" class="absolute top-4 left-4 z-10">
+      <img
+        class="transform scale-90 md:scale-100 transition-transform duration-300 ease-in-out hover:scale-105"
+        src="./images/back_btn.png"
+        alt="Back"
+      />
+    </button>
 
     <audio id="sound" src="audio/click1.mp3"></audio>
 
@@ -66,21 +111,19 @@
           });
       }
       setupButton("back", "./about.html");
-  
 
-      const audio = document.getElementById('bg-music');
-      
+      const audio = document.getElementById("bg-music");
+
       window.onload = () => {
-        const savedTime = localStorage.getItem('songTime');
+        const savedTime = localStorage.getItem("songTime");
         if (savedTime) {
-            audio.currentTime = savedTime;
+          audio.currentTime = savedTime;
         }
-        };
+      };
 
-        window.onbeforeunload = () => {
-        localStorage.setItem('songTime', audio.currentTime);
-        };
-
+      window.onbeforeunload = () => {
+        localStorage.setItem("songTime", audio.currentTime);
+      };
     </script>
   </body>
 </html>
