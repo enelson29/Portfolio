@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,23 +12,75 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Anton&family=Tiny5&display=swap");
       @keyframes jump {
-        0%,
-        100% {
-          transform: translateY(0); /* Original position */
+        0%, 100% {
+          transform: translateY(0);
         }
         50% {
-          transform: translateY(-30px); /* Jump up by 30px */
+          transform: translateY(-30px);
         }
       }
       .animate-jump {
-        animation: jump 1s infinite; /* Animation applied */
+        animation: jump 1s infinite;
+      }
+
+      .text-shadow {
+        text-shadow:
+          1px 1px 2px rgb(117, 153, 116),
+          0 0 1em black,
+          0 0 0.2em rgb(116, 180, 233);
+      }
+
+      .carousel-container {
+        width: 70%;
+        max-width: 800px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .carousel-images {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .carousel-images .slide {
+        min-width: 100%;
+        height: auto;
+      }
+
+      .carousel-description {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        text-shadow: 1px 1px 2px rgb(0, 0, 0);
+      }
+
+      .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 50%;
+        color: white;
+        font-size: 24px;
+      }
+
+      .left-button {
+        left: 10px;
+      }
+
+      .right-button {
+        right: 10px;
       }
     </style>
   </head>
-  <body
-    class="h-screen bg-no-repeat bg-cover bg-center flex overflow-hidden"
-    style="background-image: url('./images/main_bg.png')"
-  >
+
+  <body class="h-screen bg-no-repeat bg-cover bg-center flex overflow-hidden relative " style="background-image: url('./images/main_bg.png')">
     <div class="audio-container fixed bottom-0 right-0">
       <audio id="bg-music" controls loop>
         <source src="audio/shop.mp3" type="audio/mpeg" />
@@ -36,35 +88,54 @@
       </audio>
     </div>
 
-    <div class="flex-col items-center justify-center w-full h-full p-4 md:p-10">
-      <button id="back">
-        <img
-          class="absolute top-4 left-10 transform scale-100 transition-transform duration-300 ease-in-out hover:scale-105"
-          src="./images/back_btn.png"
-          alt="Back"
-        />
+    <div class="fixed top-0 right-0 scale-50 p-4">
+      <h2 class="tiny5-regular">*Mobile Users* For better experience, Rotate your phone!</h2>
+    </div>
+    <div class="flex flex-col items-center justify-center w-full h-full p-4 md:p-10">
+      <button id="back" class="absolute top-4 left-4 z-10">
+        <img class="transform scale-90 md:scale-100 transition-transform duration-300 ease-in-out hover:scale-105" src="./images/back_btn.png" alt="Back" />
       </button>
 
+
+      <div class="carousel-container relative">
+        <div class="carousel-images">
+          <div class="slide relative">
+            <img src="./carousel/health.gif" alt="Image 1" class="w-full" />
+            <div class="carousel-description">Contributed a functional health bar to a team game dev project (in progress)</div>
+          </div>
+          <div class="slide relative">
+            <img src="./carousel/website.png" alt="Image 2" class="w-full" />
+            <div class="carousel-description">Created a website for a local business
+              <a href="https://speedwaymessenger.com/index.html"> [Click to visit!]</a>  </div>
+          </div>
+          <div class="slide relative">
+            <img src="./carousel/fri_demo.gif" alt="Image 3" class="w-full scale-50" />
+            <div class="carousel-description">Conducted 3D Model Research </div>
+          </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-button left-button" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="carousel-button right-button" onclick="moveSlide(1)">&#10095;</button>
+      </div>
     </div>
 
     <audio id="sound" src="audio/click1.mp3"></audio>
 
     <script>
       function setupButton(buttonId, redirectUrl) {
-        document
-          .getElementById(buttonId)
-          .addEventListener("click", async function () {
-            const audio = document.getElementById("sound");
-            try {
-              await audio.play();
-              audio.onended = () => {
-                window.location.href = redirectUrl;
-              };
-            } catch (error) {
-              console.error("Error playing sound:", error);
+        document.getElementById(buttonId).addEventListener("click", async function () {
+          const audio = document.getElementById("sound");
+          try {
+            await audio.play();
+            audio.onended = () => {
               window.location.href = redirectUrl;
-            }
-          });
+            };
+          } catch (error) {
+            console.error("Error playing sound:", error);
+            window.location.href = redirectUrl;
+          }
+        });
       }
       setupButton("back", "./about.html");
 
@@ -80,6 +151,25 @@
       window.onbeforeunload = () => {
         localStorage.setItem("songTime", audio.currentTime);
       };
+
+      // Carousel JavaScript
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".carousel-images .slide");
+      const totalSlides = slides.length;
+
+      function showSlide(index) {
+        const newIndex = (index + totalSlides) % totalSlides;
+        const slideContainer = document.querySelector(".carousel-images");
+        slideContainer.style.transform = `translateX(-${newIndex * 100}%)`;
+        currentSlide = newIndex;
+      }
+
+      function moveSlide(direction) {
+        showSlide(currentSlide + direction);
+      }
+
+      // Initialize carousel
+      showSlide(currentSlide);
     </script>
   </body>
 </html>
