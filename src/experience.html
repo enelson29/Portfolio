@@ -12,7 +12,8 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Anton&family=Tiny5&display=swap");
       @keyframes jump {
-        0%, 100% {
+        0%,
+        100% {
           transform: translateY(0);
         }
         50% {
@@ -24,9 +25,7 @@
       }
 
       .text-shadow {
-        text-shadow:
-          1px 1px 2px rgb(117, 153, 116),
-          0 0 1em black,
+        text-shadow: 1px 1px 2px rgb(117, 153, 116), 0 0 1em black,
           0 0 0.2em rgb(116, 180, 233);
       }
 
@@ -80,7 +79,10 @@
     </style>
   </head>
 
-  <body class="h-screen bg-no-repeat bg-cover bg-center flex overflow-hidden relative " style="background-image: url('./images/main_bg.png')">
+  <body
+    class="h-screen bg-no-repeat bg-cover bg-center flex overflow-hidden relative"
+    style="background-image: url('./images/main_bg.png')"
+  >
     <div class="audio-container fixed bottom-0 right-0">
       <audio id="bg-music" controls loop autoplay>
         <source src="audio/shop.mp3" type="audio/mpeg" />
@@ -89,34 +91,54 @@
     </div>
 
     <div class="fixed top-0 right-0 scale-50 p-4">
-      <h2 class="tiny5-regular">*Mobile Users* For better experience, Rotate your phone!</h2>
+      <h2 class="tiny5-regular">
+        *Mobile Users* For better experience, Rotate your phone!
+      </h2>
     </div>
-    <div class="flex flex-col items-center justify-center w-full h-full p-4 md:p-10">
+    <div
+      class="flex flex-col items-center justify-center w-full h-full p-4 md:p-10"
+    >
       <button id="back" class="absolute top-4 left-4 z-10">
-        <img class="transform scale-90 md:scale-100 transition-transform duration-300 ease-in-out hover:scale-105" src="./images/back_btn.png" alt="Back" />
+        <img
+          class="transform scale-90 md:scale-100 transition-transform duration-300 ease-in-out hover:scale-105"
+          src="./images/back_btn.png"
+          alt="Back"
+        />
       </button>
-
 
       <div class="carousel-container relative">
         <div class="carousel-images">
           <div class="slide relative">
             <img src="./carousel/health.gif" alt="Image 1" class="w-full" />
-            <div class="carousel-description">Contributed a functional health bar to a team game dev project (in progress)</div>
+            <div class="carousel-description">
+              Contributed a functional health bar to a team game dev project (in
+              progress)
+            </div>
           </div>
           <div class="slide relative">
             <img src="./carousel/website.png" alt="Image 2" class="w-full" />
-            <div class="carousel-description">Created a website for a local business
-              <a id="Link"> [Click to visit!]</a>  </div>
+            <div class="carousel-description">
+              Created a website for a local business
+              <a id="Link"> [Click to visit!]</a>
+            </div>
           </div>
           <div class="slide relative">
-            <img src="./carousel/fri_demo.gif" alt="Image 3" class="w-full scale-50" />
-            <div class="carousel-description">Conducted 3D Model Research </div>
+            <img
+              src="./carousel/fri_demo.gif"
+              alt="Image 3"
+              class="w-full scale-50"
+            />
+            <div class="carousel-description">Conducted 3D Model Research</div>
           </div>
         </div>
 
         <!-- Carousel Controls -->
-        <button class="carousel-button left-button" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="carousel-button right-button" onclick="moveSlide(1)">&#10095;</button>
+        <button class="carousel-button left-button" onclick="moveSlide(-1)">
+          &#10094;
+        </button>
+        <button class="carousel-button right-button" onclick="moveSlide(1)">
+          &#10095;
+        </button>
       </div>
     </div>
 
@@ -147,13 +169,22 @@
 
       window.onload = () => {
         const savedTime = localStorage.getItem("songTime");
+        const savedVolume = localStorage.getItem("audioVolume");
+
         if (savedTime) {
-          audio.currentTime = savedTime;
+          audio.currentTime = parseFloat(savedTime);
+        }
+
+        if (savedVolume) {
+          audio.volume = parseFloat(savedVolume);
+        } else {
+          audio.volume = 0.2;
         }
       };
 
       window.onbeforeunload = () => {
-        localStorage.setItem("songTime", audio.currentTime);
+        localStorage.setItem("songTime", audio.currentTime.toString());
+        localStorage.setItem("audioVolume", audio.volume.toString());
       };
 
       // Carousel JavaScript
@@ -175,12 +206,7 @@
       // Initialize carousel
       showSlide(currentSlide);
 
-      
-      setupButton(
-        "Link",
-        "https://speedwaymessenger.com/index.html"
-      );
-      
+      setupButton("Link", "https://speedwaymessenger.com/index.html");
     </script>
   </body>
 </html>

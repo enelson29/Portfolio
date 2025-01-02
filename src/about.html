@@ -1,77 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-</head>
-<body class="h-screen bg-no-repeat bg-center flex" style="background-image: url('./images/main_bg.png')">
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="h-screen bg-no-repeat bg-center flex"
+    style="background-image: url('./images/main_bg.png')"
+  >
     <div class="audio-container fixed bottom-0 right-0">
-        <audio id="bg-music" controls loop autoplay>
-            <source src="audio/shop.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+      <audio id="bg-music" controls loop autoplay>
+        <source src="audio/shop.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
     </div>
 
-    <div class="flex flex-col items-center justify-center w-full h-full p-4 md:p-10">
-        <button id="back" class="absolute top-4 left-4 z-10">
-            <img class="transform scale-90 md:scale-100 transition-transform duration-300 ease-in-out hover:scale-105" src="./images/back_btn.png" alt="Back" />
+    <div
+      class="flex flex-col items-center justify-center w-full h-full p-4 md:p-10"
+    >
+      <button id="back" class="absolute top-4 left-4 z-10">
+        <img
+          class="transform scale-90 md:scale-100 transition-transform duration-300 ease-in-out hover:scale-105"
+          src="./images/back_btn.png"
+          alt="Back"
+        />
+      </button>
+
+      <img
+        class="mb-4 md:mb-8 transform scale-75 md:scale-100 transition-transform duration-300 ease-in-out hover:scale-110"
+        src="./images/about_me.png"
+        alt="About Me"
+      />
+
+      <div
+        class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 scale-110"
+      >
+        <button
+          id="resume"
+          class="flex items-center justify-center hover:brightness-90 scale-125 transform transition-transform duration-300 ease-in-out hover:scale-110"
+        >
+          <img src="./images/resume.png" alt="Resume" class="w-1/2 h-auto" />
         </button>
 
-        <img class="mb-4 md:mb-8 transform scale-75 md:scale-100 transition-transform duration-300 ease-in-out hover:scale-110" src="./images/about_me.png" alt="About Me" />
+        <button
+          id="experience"
+          class="flex items-center justify-center hover:brightness-90 scale-125 transform transition-transform duration-300 ease-in-out hover:scale-110"
+        >
+          <img
+            src="./images/experience.png"
+            alt="Experience"
+            class="w-1/2 h-auto"
+          />
+        </button>
 
-        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 scale-110">
-            <button id="resume" class="flex items-center justify-center hover:brightness-90 scale-125 transform transition-transform duration-300 ease-in-out hover:scale-110">
-                <img src="./images/resume.png" alt="Resume" class="w-1/2 h-auto"/>
-            </button>
-
-            <button id="experience" class="flex items-center justify-center hover:brightness-90 scale-125 transform transition-transform duration-300 ease-in-out hover:scale-110">
-                <img src="./images/experience.png" alt="Experience" class="w-1/2 h-auto"/>
-            </button>
-
-            <button id="interests" class="flex items-center justify-center hover:brightness-90 scale-125 transform transition-transform duration-300 ease-in-out hover:scale-110">
-                <img src="./images/interests.png" alt="Interests" class="w-1/2 h-auto"/>
-            </button>
-        </div>
+        <button
+          id="interests"
+          class="flex items-center justify-center hover:brightness-90 scale-125 transform transition-transform duration-300 ease-in-out hover:scale-110"
+        >
+          <img
+            src="./images/interests.png"
+            alt="Interests"
+            class="w-1/2 h-auto"
+          />
+        </button>
+      </div>
     </div>
-    
+
     <audio id="sound" src="audio/click1.mp3"></audio>
 
     <script>
-        function setupButton(buttonId, redirectUrl) {
-            document.getElementById(buttonId).addEventListener("click", async function () {
-                const audio = document.getElementById("sound");
-                try {
-                    await audio.play();
-                    audio.onended = () => {
-                        window.location.href = redirectUrl;
-                    };
-                } catch (error) {
-                    console.error("Error playing sound:", error);
-                    window.location.href = redirectUrl;
-                }
-            });
-        }
-        setupButton("resume", "./resume.html");
-        setupButton("experience", "./experience.html");
-        setupButton("interests", "./interests.html");
-        setupButton("back", "./index.html");
-
-        const audio = document.getElementById('bg-music');
-        
-        window.onload = () => {
-            const savedTime = localStorage.getItem('songTime');
-            if (savedTime) {
-                audio.currentTime = savedTime;
+      function setupButton(buttonId, redirectUrl) {
+        document
+          .getElementById(buttonId)
+          .addEventListener("click", async function () {
+            const audio = document.getElementById("sound");
+            try {
+              await audio.play();
+              audio.onended = () => {
+                window.location.href = redirectUrl;
+              };
+            } catch (error) {
+              console.error("Error playing sound:", error);
+              window.location.href = redirectUrl;
             }
+          });
+      }
+      setupButton("resume", "./resume.html");
+      setupButton("experience", "./experience.html");
+      setupButton("interests", "./interests.html");
+      setupButton("back", "./index.html");
+
+      const audio = document.getElementById("bg-music");
+
+        window.onload = () => {
+          const savedTime = localStorage.getItem("songTime");
+          const savedVolume = localStorage.getItem("audioVolume");
+
+          if (savedTime) {
+            audio.currentTime = parseFloat(savedTime); 
+          }
+
+          if (savedVolume) {
+            audio.volume = parseFloat(savedVolume); 
+          } else {
+            audio.volume = 0.2;
+          }
         };
 
         window.onbeforeunload = () => {
-            localStorage.setItem('songTime', audio.currentTime);
+          localStorage.setItem("songTime", audio.currentTime.toString());
+          localStorage.setItem("audioVolume", audio.volume.toString());
         };
 
-        
     </script>
-</body>
+  </body>
 </html>

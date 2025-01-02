@@ -98,21 +98,30 @@
         "https://drive.google.com/file/d/1hFJfTru9CzG_5GDnvwnDDkIXbRwKqM6G/view?usp=sharing"
       );
       setupButton("back", "./about.html")
-
-      const audio = document.getElementById('bg-music');
       applyRandomDelay();
+      const audio = document.getElementById("bg-music");
+
       window.onload = () => {
-        
-        const savedTime = localStorage.getItem('songTime');
+        const savedTime = localStorage.getItem("songTime");
+        const savedVolume = localStorage.getItem("audioVolume");
+
         if (savedTime) {
-            audio.currentTime = savedTime;
+          audio.currentTime = parseFloat(savedTime); 
         }
-        };
-        
-        window.onbeforeunload = () => {
-        localStorage.setItem('songTime', audio.currentTime);
-        };
-       
+
+        if (savedVolume) {
+          audio.volume = parseFloat(savedVolume); 
+        } else {
+          audio.volume = 0.2;
+        }
+      };
+
+      window.onbeforeunload = () => {
+        localStorage.setItem("songTime", audio.currentTime.toString());
+        localStorage.setItem("audioVolume", audio.volume.toString());
+      };
+
+
     </script>
   </body>
 </html>

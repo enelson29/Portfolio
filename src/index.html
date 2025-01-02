@@ -92,18 +92,28 @@
           }
         });
 
-      const audio = document.getElementById('bg-music');
+        const audio = document.getElementById("bg-music");
 
-      window.onload = () => {
-        const savedTime = localStorage.getItem('songTime');
-        if (savedTime) {
-          audio.currentTime = savedTime;
-        }
-      };
+        window.onload = () => {
+          const savedTime = localStorage.getItem("songTime");
+          const savedVolume = localStorage.getItem("audioVolume");
 
-      window.onbeforeunload = () => {
-        localStorage.setItem('songTime', audio.currentTime);
-      };
+          if (savedTime) {
+            audio.currentTime = parseFloat(savedTime); 
+          }
+
+          if (savedVolume) {
+            audio.volume = parseFloat(savedVolume); 
+          } else {
+            audio.volume = 0.2;
+          }
+        };
+
+        window.onbeforeunload = () => {
+          localStorage.setItem("songTime", audio.currentTime.toString());
+          localStorage.setItem("audioVolume", audio.volume.toString());
+        };
+
     </script>
   </body>
 </html>

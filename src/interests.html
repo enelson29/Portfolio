@@ -75,11 +75,31 @@
 
     <!-- Rotating Circle of Images -->
     <div class="rotate-circle scale-150">
-      <img class="circle-image image1" src="https://via.placeholder.com/120" alt="Image 1" />
-      <img class="circle-image image2" src="https://via.placeholder.com/120" alt="Image 2" />
-      <img class="circle-image image3" src="https://via.placeholder.com/120" alt="Image 3" />
-      <img class="circle-image image4" src="https://via.placeholder.com/120" alt="Image 4" />
-      <img class="circle-image image5" src="https://via.placeholder.com/120" alt="Image 5" />
+      <img
+        class="circle-image image1"
+        src="https://via.placeholder.com/120"
+        alt="Image 1"
+      />
+      <img
+        class="circle-image image2"
+        src="https://via.placeholder.com/120"
+        alt="Image 2"
+      />
+      <img
+        class="circle-image image3"
+        src="https://via.placeholder.com/120"
+        alt="Image 3"
+      />
+      <img
+        class="circle-image image4"
+        src="https://via.placeholder.com/120"
+        alt="Image 4"
+      />
+      <img
+        class="circle-image image5"
+        src="https://via.placeholder.com/120"
+        alt="Image 5"
+      />
     </div>
 
     <!-- Back Button -->
@@ -116,13 +136,22 @@
 
       window.onload = () => {
         const savedTime = localStorage.getItem("songTime");
+        const savedVolume = localStorage.getItem("audioVolume");
+
         if (savedTime) {
-          audio.currentTime = savedTime;
+          audio.currentTime = parseFloat(savedTime);
+        }
+
+        if (savedVolume) {
+          audio.volume = parseFloat(savedVolume);
+        } else {
+          audio.volume = 0.2;
         }
       };
 
       window.onbeforeunload = () => {
-        localStorage.setItem("songTime", audio.currentTime);
+        localStorage.setItem("songTime", audio.currentTime.toString());
+        localStorage.setItem("audioVolume", audio.volume.toString());
       };
     </script>
   </body>
