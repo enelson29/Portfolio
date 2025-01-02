@@ -14,7 +14,7 @@
     style="background-image: url('./images/main_bg.png')"
   >
     <div class="audio-container fixed bottom-0 right-0">
-      <audio id="bg-music" controls loop autoplay>
+      <audio id="bg-music" controls loop >
         <source src="audio/shop.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
@@ -97,26 +97,42 @@
 
       const audio = document.getElementById("bg-music");
 
-        window.onload = () => {
-          const savedTime = localStorage.getItem("songTime");
-          const savedVolume = localStorage.getItem("audioVolume");
+      window.onload = () => {
+        const savedTime = localStorage.getItem("songTime");
+        const savedVolume = localStorage.getItem("audioVolume");
+        const savedState = localStorage.getItem("audioState");
 
-          if (savedTime) {
-            audio.currentTime = parseFloat(savedTime); 
-          }
+        if (savedTime) {
+          audio.currentTime = parseFloat(savedTime); // Convert to a number
+        }
 
-          if (savedVolume) {
-            audio.volume = parseFloat(savedVolume); 
-          } else {
-            audio.volume = 0.2;
-          }
-        };
+        if (savedVolume) {
+          audio.volume = parseFloat(savedVolume); // Convert to a number
+        } else {
+          audio.volume = 0.2; // Default volume
+        }
 
-        window.onbeforeunload = () => {
-          localStorage.setItem("songTime", audio.currentTime.toString());
-          localStorage.setItem("audioVolume", audio.volume.toString());
-        };
+        if (savedState === "playing") {
+          audio.play(); // Resume playback if previously playing
+        } else if (savedState === "paused") {
+          audio.pause(); // Ensure it stays paused
+        }
+      };
 
+      window.onbeforeunload = () => {
+        localStorage.setItem("songTime", audio.currentTime.toString());
+        localStorage.setItem("audioVolume", audio.volume.toString());
+        localStorage.setItem("audioState", audio.paused ? "paused" : "playing"); // Save play/pause state
+      };
+
+      // Optional: Add an event listener for pause/play
+      audio.addEventListener("play", () => {
+        localStorage.setItem("audioState", "playing");
+      });
+
+      audio.addEventListener("pause", () => {
+        localStorage.setItem("audioState", "paused");
+      });
     </script>
   </body>
 </html>

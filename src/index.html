@@ -11,15 +11,15 @@
     />
 
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Anton&family=Tiny5&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Anton&family=Tiny5&display=swap");
 
       .audio-container {
-      position: fixed;
-      bottom: 0;
-      right: 0;
-      z-index: 50;
-    }
-    
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 50;
+      }
+
       @keyframes jump {
         0%,
         100% {
@@ -30,17 +30,17 @@
         }
       }
       .animate-jump {
-        animation: jump 0.75s infinite; 
+        animation: jump 0.75s infinite;
       }
     </style>
   </head>
   <body
     class="flex relative h-screen bg-no-repeat bg-cover bg-center"
-    style="background-image: url('./images/start_bg.png')">
-
+    style="background-image: url('./images/start_bg.png')"
+  >
     <div class="audio-container fixed bottom-0 right-0">
-      <audio id="bg-music" controls loop autoplay>
-        <source src="audio/shop.mp3" type="audio/mpeg">
+      <audio id="bg-music" controls loop >
+        <source src="audio/shop.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </div>
@@ -61,8 +61,7 @@
         alt="Start Button"
       />
     </button>
- 
- 
+
     <audio id="sound" src="audio/click1.mp3"></audio>
 
     <script>
@@ -81,28 +80,49 @@
           }
         });
 
-        const audio = document.getElementById("bg-music");
+      const audio = document.getElementById("bg-music");
 
-        window.onload = () => {
-          const savedTime = localStorage.getItem("songTime");
-          const savedVolume = localStorage.getItem("audioVolume");
+      window.onload = () => {
+        // Retrieve saved settings
+        const savedTime = localStorage.getItem("songTime");
+        const savedVolume = localStorage.getItem("audioVolume");
+        const savedState = localStorage.getItem("audioState");
 
-          if (savedTime) {
-            audio.currentTime = parseFloat(savedTime); 
-          }
+        // Set playback time
+        if (savedTime) {
+          audio.currentTime = parseFloat(savedTime);
+        }
 
-          if (savedVolume) {
-            audio.volume = parseFloat(savedVolume); 
-          } else {
-            audio.volume = 0.2;
-          }
-        };
+        // Set volume
+        if (savedVolume) {
+          audio.volume = parseFloat(savedVolume);
+        } else {
+          audio.volume = 0.2; // Default volume
+        }
 
-        window.onbeforeunload = () => {
-          localStorage.setItem("songTime", audio.currentTime.toString());
-          localStorage.setItem("audioVolume", audio.volume.toString());
-        };
+        // Explicitly pause or play the audio based on saved state
+        if (savedState === "paused") {
+          audio.pause();
+        } else if (savedState === "playing") {
+          audio.play();
+        }
+      };
 
+      window.onbeforeunload = () => {
+        // Save current playback settings
+        localStorage.setItem("songTime", audio.currentTime.toString());
+        localStorage.setItem("audioVolume", audio.volume.toString());
+        localStorage.setItem("audioState", audio.paused ? "paused" : "playing");
+      };
+
+      // Event listeners to save play/pause state in real time
+      audio.addEventListener("play", () => {
+        localStorage.setItem("audioState", "playing");
+      });
+
+      audio.addEventListener("pause", () => {
+        localStorage.setItem("audioState", "paused");
+      });
     </script>
   </body>
 </html>
