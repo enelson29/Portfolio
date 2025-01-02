@@ -3,62 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rotating Circle of Larger Images</title>
+
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
     <style>
-      /* Rotate animation */
-      @keyframes rotateAround {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* Container for rotating circle */
-      .rotate-circle {
-        animation: rotateAround 10s infinite linear;
-        position: relative;
-        width: 500px; /* Increase the size of the circle container */
-        height: 500px; /* Adjust the height accordingly */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-      }
-
-      /* Style for the images on the circle */
-      .circle-image {
-        position: absolute;
-        width: 120px; /* Larger image size */
-        height: 120px; /* Larger image size */
-        object-fit: cover;
-        border-radius: 50%;
-        top: 50%;
-        left: 50%;
-        transform-origin: center;
-      }
-
-      /* Adjusting the position for each image around the circle */
-      .image1 {
-        transform: rotate(0deg) translate(180px) rotate(0deg); /* Increased image size and translation distance */
-      }
-      .image2 {
-        transform: rotate(72deg) translate(180px) rotate(-72deg);
-      }
-      .image3 {
-        transform: rotate(144deg) translate(180px) rotate(-144deg);
-      }
-      .image4 {
-        transform: rotate(216deg) translate(180px) rotate(-216deg);
-      }
-      .image5 {
-        transform: rotate(288deg) translate(180px) rotate(-288deg);
-      }
+      
     </style>
   </head>
   <body
@@ -73,34 +24,39 @@
       </audio>
     </div>
 
-    <!-- Rotating Circle of Images -->
-    <div class="rotate-circle scale-150">
-      <img
-        class="circle-image image1"
-        src="https://via.placeholder.com/120"
-        alt="Image 1"
-      />
-      <img
-        class="circle-image image2"
-        src="https://via.placeholder.com/120"
-        alt="Image 2"
-      />
-      <img
-        class="circle-image image3"
-        src="https://via.placeholder.com/120"
-        alt="Image 3"
-      />
-      <img
-        class="circle-image image4"
-        src="https://via.placeholder.com/120"
-        alt="Image 4"
-      />
-      <img
-        class="circle-image image5"
-        src="https://via.placeholder.com/120"
-        alt="Image 5"
-      />
+    <div class="max-w-screen-lg mx-auto p-6 ">
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="relative group">
+          <img src="images/heartstopper.gif" alt="Image 1" class="w-full scale-105 h-56 object-cover rounded-lg transition-all duration-300 ease-in-out transform group-hover:scale-105" />
+          <div class="absolute inset-0 opacity-30 group-hover:opacity-50 rounded-lg transition-opacity duration-300"></div>
+        </div>
+        <div class="relative group">
+          <img src="images/Cooking.gif" alt="Image 2" class="w-full  h-56 object-cover rounded-lg transition-all duration-300 ease-in-out transform group-hover:scale-105" />
+          <div class="absolute inset-0 opacity-30 group-hover:opacity-50 rounded-lg transition-opacity duration-300"></div>
+        </div>
+        <div class="relative group">
+          <img src="images/snowboarding.gif" alt="Image 3" class="w-full h-56 object-cover rounded-lg transition-all duration-300 ease-in-out transform group-hover:scale-105" />
+          <div class="absolute inset-0 opacity-30 group-hover:opacity-50 rounded-lg transition-opacity duration-300"></div>
+        </div>
+        <div class="relative group">
+          <img src="images/dance.gif" alt="Image 4" class="w-full h-56 object-cover rounded-lg transition-all duration-300 ease-in-out transform group-hover:scale-105" />
+          <div class="absolute inset-0 opacity-30 group-hover:opacity-50 rounded-lg transition-opacity duration-300"></div>
+        </div>
+        <div class="relative group">
+          <img src="images/gaming.gif" alt="Image 4" class="w-full h-56 object-cover rounded-lg transition-all duration-300 ease-in-out transform group-hover:scale-105" />
+          <div class="absolute inset-0  opacity-30 group-hover:opacity-50 rounded-lg transition-opacity duration-300"></div>
+        </div> <div class="relative group">
+          <img src="images/listening to music.gif" alt="Image 4" class="w-full h-56 object-cover rounded-lg transition-all duration-300 ease-in-out transform group-hover:scale-105" />
+          <div class="absolute inset-0 opacity-30 group-hover:opacity-50 rounded-lg transition-opacity duration-300"></div>
+        </div>
+        <!-- Add more images here -->
+      </div>
     </div>
+    
+    
+
+   
+    
 
     <!-- Back Button -->
     <button id="back" class="absolute top-4 left-4 z-10">
